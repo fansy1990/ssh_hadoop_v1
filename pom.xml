@@ -329,6 +329,11 @@
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-hdfs</artifactId>
+            <version>${hadoop.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-mapreduce-client-common</artifactId>
             <version>${hadoop.version}</version>
         </dependency>
@@ -344,6 +349,7 @@
       <plugin> 
         <groupId>org.apache.maven.plugins</groupId> 
         <artifactId>maven-compiler-plugin</artifactId> 
+        <version>2.3.2</version>
         <configuration> 
           <source>1.7</source> 
           <target>1.7</target> 
