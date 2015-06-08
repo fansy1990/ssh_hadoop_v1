@@ -1,5 +1,6 @@
-#Wed May 27 09:47:48 CST 2015
+#Mon Jun 08 23:08:32 CST 2015
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
-encoding//src/main/java/com/fz/dao/BaseDAOImpl.java=UTF-8
+encoding//src/main/java/com/fz/dao/BaseDaoImpl.java=UTF-8
+encoding//src/test/java=UTF-8
 encoding/<project>=UTF-8

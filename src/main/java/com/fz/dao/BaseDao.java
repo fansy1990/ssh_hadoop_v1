@@ -10,7 +10,7 @@ import java.util.List;
  * @author ss 
  *  
  */  
-public interface BaseDAO<T> {  
+public interface BaseDao<T> {  
   
     /** 
      * 保存一个对象 

@@ -7,7 +7,7 @@
   j2ee-spec="1.7"
   archive="ssh_hadoop_v1.war">
   <attributes>
-    <attribute name="webrootdir" value="target/ssh" />
+    <attribute name="webrootdir" value="src/main/webapp" />
   </attributes>
 </project-module>
 
