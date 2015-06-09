@@ -3,7 +3,13 @@
  */
 package com.fz.util;
 
+import java.io.IOException;
+
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.LocatedFileStatus;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.fs.RemoteIterator;
 
 /**
  * Hadoop 工具类
@@ -13,6 +19,7 @@ import org.apache.hadoop.conf.Configuration;
 public class HUtils {
 
 	private static Configuration conf = null;
+	private static FileSystem fs = null;
 	
 	public static boolean flag = false; // get configuration from db or file  ,true : db,false:file
 	
@@ -27,8 +34,10 @@ public class HUtils {
 				conf.set("yarn.resourcemanager.address", "node101:8032"); // 指定resourcemanager  
 				conf.set("yarn.resourcemanager.scheduler.address", "node101:8030");// 指定资源分配器
 			}else{// get configuration from file
+				//System.out.println(Utils.getKey("mapreduce.app-submission.cross-platform"));
+				//System.out.println(Boolean.getBoolean(Utils.getKey("mapreduce.app-submission.cross-platform")));
 				conf.setBoolean("mapreduce.app-submission.cross-platform", 
-						Boolean.getBoolean(Utils.getKey("mapreduce.app-submission.cross-platform")));// 配置使用跨平台提交任务  
+						"true".equals(Utils.getKey("mapreduce.app-submission.cross-platform")));// 配置使用跨平台提交任务  
 				conf.set("fs.defaultFS", Utils.getKey("fs.defaultFS"));//指定namenode    
 				conf.set("mapreduce.framework.name", Utils.getKey("mapreduce.framework.name"));  // 指定使用yarn框架  
 				conf.set("yarn.resourcemanager.address", Utils.getKey("yarn.resourcemanager.address")); // 指定resourcemanager  
@@ -40,5 +49,31 @@ public class HUtils {
 		return conf;
 	}
 	
+	public static FileSystem getFs(){
+		if(fs==null){
+			try {
+				fs=FileSystem.get(getConf());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return fs;
+	}
+	/**
+	 * 获取hdfs文件目录及其子文件夹信息
+	 * @param input
+	 * @param recursive
+	 * @return
+	 * @throws IOException
+	 */
+	public static  String getHdfsFiles(String input,boolean recursive) throws IOException{
+		RemoteIterator<LocatedFileStatus> files=getFs().listFiles(new Path(input), recursive);
+		StringBuffer buff = new StringBuffer();
+		while(files.hasNext()){
+			buff.append(files.next().getPath().toString()).append("<br>");
+		}
+		
+		return buff.toString();
+	}
 	
 }

@@ -3,6 +3,8 @@
  */
 package com.fz.service;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.fz.dao.BaseDao;
 import com.fz.model.User;
+import com.fz.util.HUtils;
 
 /**
  * @author fansy
@@ -38,6 +41,16 @@ public class TestService {
 	 */
 	public void updateUser(){
 		
+	}
+	/**
+	 * 获取HDFS文件信息
+	 * @param input
+	 * @return
+	 * @throws IOException 
+	 */
+	public String getHdfsFiles(String input) throws IOException{
+		
+		return HUtils.getHdfsFiles(input, true);
 	}
 	
 }

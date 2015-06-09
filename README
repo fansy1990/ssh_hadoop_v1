@@ -1,1 +1,11 @@
-This the version of hadoop and ssh
+Maven 构建Hadoop Web项目
+
+版本信息
+
+Spring4.1.3、Hibernate4.3.1、Struts2.3.1、hadoop2.6、pure0.6、jdk1.7、tomcat7、myeclipse10.0、jQuery1.11.3
+
+配置指南
+
+1. 修改 src/main/resources/db.properties 文件，添加数据库的信息（这个信息暂时没有使用，只供连接）；
+2. 修改util.properties文件云平台对应的信息(如果是windows系统提交任务，则使用默认配置即可，否则修改第一个参数为false)；
+3. 任务运行出错，可以看后台tomcat日志，一般是文件权限问题；
